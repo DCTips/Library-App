@@ -19,6 +19,12 @@ function Book(name, author, page, status){
     this.Read = status;
 }
 
+function attachRemoveBtn(tableData5){
+    let deleteBtn = create('button');
+    deleteBtn.className = 'delete';
+    deleteBtn.textContent = 'Remove';
+    tableData5.appendChild(deleteBtn);
+}
 
 // table data function 
 function create(data){
@@ -33,18 +39,20 @@ let tableHeading1 = create("th");
 let tableHeading2 = create("th");
 let tableHeading3 = create("th");
 let tableHeading4 = create("th");
-let materialIcon = create('i');
-materialIcon.className = 'material-icons';
+let tableHeading5 = create('th');
+
 
 tableHeading1.textContent = "Name";
 tableHeading2.textContent = "Author";
 tableHeading3.textContent = "Pages";
 tableHeading4.textContent = "Read Status";
+tableHeading5.textContent = "Remove";
 
 tableHead.appendChild(tableHeading1);
 tableHead.appendChild(tableHeading2);
 tableHead.appendChild(tableHeading3);
 tableHead.appendChild(tableHeading4);
+tableHead.appendChild(tableHeading5);
 table.appendChild(tableHead);
 
 // Adding event to button
@@ -62,27 +70,24 @@ addItemBtn.addEventListener('click', (event) => {
     let tableData2 = create('td');
     let tableData3 = create('td');
     let tableData4 = create('td');
+    let tableData5 = create('td');
 
     tableData1.textContent = lib.Name;
     tableData2.textContent = lib.Author;
     tableData3.textContent = lib.Pages;
     tableData4.textContent = lib.Read;
-//    if(lib.Read.toUpperCase() === "READ"){
-//        materialIcon.textContent = 'done';
-//        tableData4.appendChild(materialIcon);
-//    }else if(lib.Read.toUpperCase() === "NOT READ"){
-//        materialIcon.textContent = 'close';
-//        tableData4.appendChild(materialIcon);
-//    }
-
+    attachRemoveBtn(tableData5);
+    
     tableRow.appendChild(tableData1);
     tableRow.appendChild(tableData2);
     tableRow.appendChild(tableData3);
-    tableRow.appendChild(tableData4);
+    tableRow.appendChild(tableData4);  
+    tableRow.appendChild(tableData5);
+
     table.appendChild(tableRow);        
     
-    formContain.style.visibility = "hidden";
-    newBook.style.visibility = "visible";  
+    formContain.style.display = "none";
+    newBook.style.display = "block";  
     name.value = ' ';
     author.value = ' ';
     page.value = ' ';
@@ -91,9 +96,21 @@ addItemBtn.addEventListener('click', (event) => {
     box.appendChild(table);
 });    
 
+
 newBook.addEventListener('click', () => {
-   if(formContain.style.visibility = "hidden"){
-       formContain.style.visibility = "visible";
-       newBook.style.visibility = "hidden";
+   if(formContain.style.display = "none"){
+       formContain.style.display = "block";
+       newBook.style.display = "none";
    }
+});
+
+
+table.addEventListener('click', (event) => {
+    if( event.target.tagName === 'BUTTON'){
+        if( event.target.className === 'delete'){
+            let parDel = event.target.parentNode.parentNode;
+            let table = parDel.parentNode;
+            table.removeChild(parDel);
+        }
+    }
 });
