@@ -70,7 +70,7 @@ th, td {
     width: 480px;
     text-align: center;
     margin: 0 auto;
-    visibility: hidden;
+    display: none;
 }
 
 form{
@@ -114,4 +114,12 @@ input::placeholder{
     background: #46b3ab;
     margin: 10px 0 0 10px;
     font-size: 1em;
+}
+
+.delete{
+    background: rgba(206, 60, 60, 0.82);
+    font-size: 0.5em;
+    padding: 4px;
+    letter-spacing: 1.2px;
+    border-radius: 2px;
 }
