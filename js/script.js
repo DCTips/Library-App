@@ -97,6 +97,7 @@ addItemBtn.addEventListener('click', (event) => {
 });    
 
 
+/ Show hide the form and button
 newBook.addEventListener('click', () => {
    if(formContain.style.display = "none"){
        formContain.style.display = "block";
@@ -106,11 +107,22 @@ newBook.addEventListener('click', () => {
 
 
 table.addEventListener('click', (event) => {
+    
+    // Remove a book
     if( event.target.tagName === 'BUTTON'){
         if( event.target.className === 'delete'){
-            let parDel = event.target.parentNode.parentNode;
-            let table = parDel.parentNode;
+            let parDel = event.target.parentNode.parentNode; // Returns delete parent
+            let table = parDel.parentNode; //Returns table
             table.removeChild(parDel);
+        }
+    }
+    
+    // Change Book Read Status
+    if( event.target.className === 'read' ){
+        if(event.target.textContent.toUpperCase() === 'READ'){
+            event.target.textContent = 'Not Read';
+        }else if( event.target.textContent.toUpperCase() === 'NOT READ' ){
+            event.target.textContent = 'Read';
         }
     }
 });
